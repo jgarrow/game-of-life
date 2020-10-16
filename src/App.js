@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
 import { Fragment, useState, useEffect, useCallback, useRef } from 'react';
-import { Router, Link } from '@reach/router';
+import { Router } from '@reach/router';
 
 import Home from './components/Home';
 import About from './components/About';
