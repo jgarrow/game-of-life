@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
+import { Fragment } from 'react';
 
 import Grid from './Grid';
 import Footer from './Footer';
@@ -18,14 +19,18 @@ const Home = ({
     handleGridSizeChange,
     speed,
     setSpeed,
+    color,
+    handleColorChange,
 }) => {
     return (
-        <div className="App">
+        <Fragment>
             <main
                 sx={{
-                    width: '80%',
-                    maxWidth: '960px',
-                    margin: '1rem auto',
+                    width: '100%',
+                    padding: '1rem 0',
+                    margin: '0 auto',
+                    height: 'calc(100vh - 222px)',
+                    overflow: 'scroll',
                 }}
             >
                 <Grid
@@ -34,6 +39,7 @@ const Home = ({
                     incrementGeneration={incrementGeneration}
                     numCells={numCells}
                     handleCellClick={handleCellClick}
+                    color={color}
                 />
             </main>
             <Footer
@@ -47,8 +53,10 @@ const Home = ({
                 handleGridSizeChange={handleGridSizeChange}
                 speed={speed}
                 setSpeed={setSpeed}
+                color={color}
+                handleColorChange={handleColorChange}
             />
-        </div>
+        </Fragment>
     );
 };
 

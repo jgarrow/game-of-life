@@ -1,13 +1,13 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
 
-const Cell = ({ isAlive, isRunning, handleClick, coordinates }) => {
+const Cell = ({ isAlive, isRunning, handleClick, color }) => {
     return (
         <div
             sx={{
-                bg: isAlive ? 'secondary' : 'background',
+                bg: isAlive ? color : 'background',
                 border: '1px solid',
-                borderColor: 'secondary',
+                borderColor: color,
             }}
             onClick={() => {
                 if (!isRunning) {
