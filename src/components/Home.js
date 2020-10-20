@@ -13,6 +13,7 @@ const Home = ({
     startSimulation,
     reset,
     step,
+    randomize,
     generation,
     handleGridSizeChange,
     speed,
@@ -40,6 +41,7 @@ const Home = ({
                 startSimulation={startSimulation}
                 reset={reset}
                 step={step}
+                randomize={randomize}
                 generation={generation}
                 gridSize={gridSize}
                 handleGridSizeChange={handleGridSizeChange}

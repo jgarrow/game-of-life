@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, Button } from 'theme-ui';
 
-const Buttons = ({ isRunning, startSimulation, reset, step }) => {
+const Buttons = ({ isRunning, startSimulation, reset, step, randomize }) => {
     return (
         <div
             sx={{
@@ -11,27 +11,14 @@ const Buttons = ({ isRunning, startSimulation, reset, step }) => {
                 justifyContent: 'space-evenly',
             }}
         >
-            <Button
-                onClick={() => {
-                    startSimulation();
-                }}
-            >
+            <Button onClick={() => startSimulation()}>
                 {isRunning ? 'Stop' : 'Start'}
             </Button>
-            <Button
-                onClick={() => {
-                    reset();
-                }}
-            >
-                Reset
+            <Button onClick={() => reset()}>Reset</Button>
+            <Button onClick={() => randomize()} disabled={isRunning}>
+                Random Grid
             </Button>
-            <Button
-                onClick={() => {
-                    step();
-                }}
-            >
-                Step
-            </Button>
+            <Button onClick={() => step()}>Step</Button>
         </div>
     );
 };

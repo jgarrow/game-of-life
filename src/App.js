@@ -9,6 +9,7 @@ import Header from './components/Header';
 
 import { runSingleSimulation } from './utils/runSingleSimulation';
 import { createGrid } from './utils/createGrid';
+import { generateRandomCells } from './utils/generateRandomCells';
 
 import './App.css';
 
@@ -88,6 +89,11 @@ function App() {
         }
     };
 
+    const randomize = () => {
+        const newCells = generateRandomCells(gridSize);
+        setNumCells(newCells);
+    };
+
     useEffect(() => {
         setNumCells(createGrid(0, gridSize));
     }, [gridSize]);
@@ -106,6 +112,7 @@ function App() {
                     startSimulation={startSimulation}
                     reset={reset}
                     step={step}
+                    randomize={randomize}
                     generation={generation}
                     handleGridSizeChange={handleGridSizeChange}
                     speed={speed}

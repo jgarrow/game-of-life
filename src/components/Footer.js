@@ -9,6 +9,7 @@ const Footer = ({
     startSimulation,
     reset,
     step,
+    randomize,
     generation,
     gridSize,
     handleGridSizeChange,
@@ -22,13 +23,12 @@ const Footer = ({
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-evenly',
-                // margin: '1rem 0',
                 boxSizing: 'border-box',
                 padding: '1rem',
                 bg: 'muted',
                 position: 'sticky',
                 bottom: '0',
-                boxShadow: `2px 0px 4px 0px rgba(45, 55, 72, 0.25)`,
+                boxShadow: '2px 0px 4px 0px rgba(45, 55, 72, 0.25)',
             }}
         >
             <div
@@ -41,10 +41,12 @@ const Footer = ({
                     startSimulation={startSimulation}
                     reset={reset}
                     step={step}
+                    randomize={randomize}
                 />
                 <p
                     sx={{
                         textAlign: 'center',
+                        marginBottom: '0',
                     }}
                 >{`Generation: ${generation}`}</p>
             </div>
