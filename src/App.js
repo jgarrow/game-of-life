@@ -20,8 +20,9 @@ function App() {
     const [gridSize, setGridSize] = useState({
         columns: 25,
         rows: 25,
-        cellSize: 50,
+        cellSize: 20,
     });
+    const [color, setColor] = useState('#718096');
     const [numCells, setNumCells] = useState([]);
     const generationRef = useRef(generation);
     generationRef.current = generation;
@@ -94,8 +95,13 @@ function App() {
         setNumCells(newCells);
     };
 
+    const handleColorChange = (clr) => {
+        setColor(clr.hex);
+    };
+
     useEffect(() => {
         setNumCells(createGrid(0, gridSize));
+        setGeneration(1);
     }, [gridSize]);
 
     return (
@@ -117,6 +123,8 @@ function App() {
                     handleGridSizeChange={handleGridSizeChange}
                     speed={speed}
                     setSpeed={setSpeed}
+                    color={color}
+                    handleColorChange={handleColorChange}
                 />
                 <About path="/about" />
             </Router>

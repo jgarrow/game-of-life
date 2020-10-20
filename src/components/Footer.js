@@ -1,7 +1,9 @@
 /** @jsx jsx */
-import { jsx } from 'theme-ui';
+import { jsx, Button } from 'theme-ui';
+import { useState } from 'react';
 
 import Buttons from './Buttons';
+import ColorPicker from './ColorPicker';
 import SizeInput from './SizeInput';
 
 const Footer = ({
@@ -15,7 +17,11 @@ const Footer = ({
     handleGridSizeChange,
     speed,
     setSpeed,
+    color,
+    handleColorChange,
 }) => {
+    const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
+
     return (
         <footer
             sx={{
@@ -43,12 +49,40 @@ const Footer = ({
                     step={step}
                     randomize={randomize}
                 />
-                <p
+                <div
                     sx={{
-                        textAlign: 'center',
-                        marginBottom: '0',
+                        position: 'relative',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-evenly',
                     }}
-                >{`Generation: ${generation}`}</p>
+                >
+                    <p
+                        sx={{
+                            textAlign: 'center',
+                            // marginBottom: '0',
+                        }}
+                    >{`Generation: ${generation}`}</p>
+                    <Button
+                        disabled={isRunning}
+                        onClick={() => setIsColorPickerOpen(!isColorPickerOpen)}
+                        sx={{
+                            transition: '0.2s background ease-in-out',
+
+                            ':disabled': {
+                                bg: 'secondary',
+                            },
+                        }}
+                    >
+                        Change Color
+                    </Button>
+                    {isColorPickerOpen ? (
+                        <ColorPicker
+                            color={color}
+                            handleColorChange={handleColorChange}
+                        />
+                    ) : null}
+                </div>
             </div>
             <SizeInput
                 gridSize={gridSize}

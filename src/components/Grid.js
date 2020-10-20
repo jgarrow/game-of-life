@@ -3,7 +3,7 @@ import { jsx } from 'theme-ui';
 
 import Cell from './Cell';
 
-const Grid = ({ gridSize, isRunning, numCells, handleCellClick }) => {
+const Grid = ({ gridSize, isRunning, numCells, handleCellClick, color }) => {
     const { columns, rows, cellSize } = gridSize;
 
     return (
@@ -25,6 +25,7 @@ const Grid = ({ gridSize, isRunning, numCells, handleCellClick }) => {
                                   isRunning={isRunning}
                                   handleClick={() => handleCellClick(j, i)}
                                   coordinates={{ col: j, row: i }}
+                                  color={color}
                               />
                           ))
                           .flat();
