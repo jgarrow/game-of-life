@@ -93,6 +93,7 @@ function App() {
     const randomize = () => {
         const newCells = generateRandomCells(gridSize);
         setNumCells(newCells);
+        setGeneration(1);
     };
 
     const handleColorChange = (clr) => {
