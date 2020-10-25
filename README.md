@@ -1,68 +1,36 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a React version of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life). 
 
-## Available Scripts
+## Using this project
 
-In the project directory, you can run:
+1. Clone this repo and download it to your local computer
+2. Install the dependencies
 
-### `yarn start`
+```bash
+npm install
+```
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+3. Start the development server
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+```bash
+npm run start
+```
 
-### `yarn test`
+## Approach
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The grid is created using CSS grid, with inputs stored in state to hold the size of the grid. Then, we can use the size inputs to dynamically create a 2D array with which to populate our grid. The 2D array values are either `0` or `1` to represent whether a cell is respectively "dead" or "alive". Because I wanted to use a recursive approach to trigger each "generation" of updated cells, I used `useCallback` so that the recursive `runSimulation` function wouldn't get recreated on every rerender. Then to make sure I was still accessing the most up to date value of state, I used `useRef` to check if the user wants to stop the function calls or not. If I just relied on the state, I could've run into some issues since state gets set and updated asynchronously. Hence the decision to use the `useRef` hook to access the state that tells us whether or not we want the animations to keep running.
 
-### `yarn build`
+I opted to not use something like Context or Redux to manage state so I could just focus on getting the functionality of the app working, so there is a fair amount of prop drilling. If I come back to this project, I'll probably use Context to help clean up all of the state and functions that are living in `App.js` that I prop drill down to my other components just to help clean up the `App.js` file.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Some extra features I added that have no effect on the core functionality of running the Game of Life:
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- Input to allow the user to change the speed of the animations 
+- Input to allow the user to change the color of the alive cells
+- Input to allow the user to change the size of the grid cells
+- Input to allow the user to change the number of columns in the grid
+- Input to allow the user to change the number of rows in the grid
+- A "generation" counter that increments every time the simulation is run to calculate a new generation
+- A button to generate a random grid so the user doesn't have to create their own if they don't want to'
+- A button to "step" to the next generation manually instead of having the simulation run on its own
